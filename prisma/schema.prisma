@@ -13,3 +13,24 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+
+	id Int @id @default(autoincrement())
+	username String @unique
+	password_hash String 
+	goals Goal[]
+
+}
+
+model Goal {
+
+	id Int @id @default(autoincrement())
+	title String
+	description String?
+	timeTotal Int
+	timeLeft Int
+	user User @relation(fields: [userID], references: [id])
+	userID Int
+
+}

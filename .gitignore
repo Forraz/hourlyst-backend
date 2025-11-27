@@ -33,6 +33,7 @@ Thumbs.db
 # --- Prisma ---
 prisma/generated/
 prisma/migrations/dev/
+prisma/migrations/
 .prisma/
 
 # --- Cache ---

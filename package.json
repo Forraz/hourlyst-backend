@@ -15,10 +15,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec npx ts-node ./src/server.ts -w ./"
+    "dev": "nodemon --exec node --loader ts-node/esm ./src/server.ts -w ./"
   },
   "dependencies": {
-    "@prisma/client": "^7.0.1",
+    "@prisma/client": "^6.19.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",

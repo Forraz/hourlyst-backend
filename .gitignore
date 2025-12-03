@@ -45,3 +45,5 @@ temp/
 coverage/
 
 /src/generated/prisma
+/notes
+

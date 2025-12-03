@@ -1,11 +1,10 @@
 
 import prisma from "../../lib/prisma/prisma.client.ts";
-import { type User } from "../generated/prisma/client.ts";
 import { PrismaClientKnownRequestError } from "../generated/prisma/internal/prismaNamespace.ts";
 import { type UserCreateInput, type UserUpdateInput } from "../generated/prisma/models.ts";
 
 
-export async function getUserByID(id: number): Promise<User> {
+export async function getUserByID(id: number) {
 
 	const user = await prisma.user.findUnique({
 
@@ -21,7 +20,21 @@ export async function getUserByID(id: number): Promise<User> {
 
 }
 
-export async function createUser(data: UserCreateInput): Promise<User> {
+export async function getUserByUsername(username: string) {
+
+	const user = await prisma.user.findUnique({
+		where: {
+			username: username
+		}
+	});
+
+	if (!user) { throw new ReferenceError("User not found") }
+
+	return user;
+
+};
+
+export async function createUser(data: UserCreateInput) {
 
 	const user = await prisma.user.create({ data: data });
 
@@ -29,9 +42,9 @@ export async function createUser(data: UserCreateInput): Promise<User> {
 		
 }
 
-export async function updateUserByID(id: number, data: UserUpdateInput): Promise<User> {
+export async function updateUserByID(id: number, data: UserUpdateInput) {
 
-	let user: User;
+	let user;
 
 	try {
 
@@ -57,9 +70,9 @@ export async function updateUserByID(id: number, data: UserUpdateInput): Promise
 
 }
 
-export async function deleteUserByID(id: number): Promise<User> {
+export async function deleteUserByID(id: number) {
 
-	let user: User;
+	let user;
 
 	try {
 

@@ -2,6 +2,7 @@
 import type { Request, Response, NextFunction } from "express";
 import { createUser, deleteUserByID, getUserByID, updateUserByID } from "../services/users.services.ts";
 import type { UserCreateInput, UserUpdateInput } from "../generated/prisma/models.ts";
+import type { UserDTO } from "../schemas/users.schemas.ts";
 
 export async function handleGetUser(req: Request, res: Response) {
 
@@ -9,7 +10,12 @@ export async function handleGetUser(req: Request, res: Response) {
 
 	const user = await getUserByID(id);
 
-	res.status(200).json(user);	
+	const userDTO: UserDTO = {
+		id: user.id,
+		username: user.username
+	};
+
+	res.status(200).json(userDTO);	
 
 }
 export async function handlePostUser(req: Request, res: Response) {
@@ -18,7 +24,12 @@ export async function handlePostUser(req: Request, res: Response) {
 
 	const user = await createUser(data);
 
-	res.status(200).json(user);	
+	const userDTO: UserDTO = {
+		id: user.id,
+		username: user.username
+	};
+
+	res.status(200).json(userDTO);	
 
 }
 export async function handlePutUser(req: Request, res: Response) {
@@ -28,7 +39,12 @@ export async function handlePutUser(req: Request, res: Response) {
 
 	const user = await updateUserByID(id, data);
 
-	res.status(200).json(user);	
+	const userDTO: UserDTO = {
+		id: user.id,
+		username: user.username
+	};
+
+	res.status(200).json(userDTO);	
 
 }
 export async function handleDeleteUser(req: Request, res: Response) {
@@ -37,6 +53,11 @@ export async function handleDeleteUser(req: Request, res: Response) {
 
 	const user = await deleteUserByID(id);
 
-	res.status(200).json(user);	
+	const userDTO: UserDTO = {
+		id: user.id,
+		username: user.username
+	};
+
+	res.status(200).json(userDTO);	
 
 }

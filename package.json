@@ -15,10 +15,11 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec node --loader ts-node/esm ./src/server.ts -w ./"
+    "dev": "nodemon --exec ts-node ./src/server.ts -w ./"
   },
   "dependencies": {
-    "@prisma/client": "^6.19.0",
+    "@prisma/adapter-pg": "^7.0.1",
+    "@prisma/client": "^7.0.1",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
@@ -29,7 +30,8 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.10.1",
     "nodemon": "^3.1.11",
-    "prisma": "^6.19.0",
+    "prisma": "^7.0.1",
+    "prisma-zod-generator": "^2.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }

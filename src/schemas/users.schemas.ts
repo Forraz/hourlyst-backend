@@ -42,7 +42,9 @@ export const UserPutRequestSchema = z.object({
 	params: UserDataSchema.pick({
 		id: true
 	}),
-	body: UserDataSchema.partial(),
+	body: UserDataSchema.omit({
+		id: true
+	}).partial(),
 
 });
 

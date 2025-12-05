@@ -27,7 +27,8 @@ const GoalCreateDataSchema = GoalDataSchema.omit({
 export type GoalCreateData = z.infer<typeof GoalCreateDataSchema>;
 
 const GoalUpdateDataSchema = GoalDataSchema.omit({
-	id: true
+	id: true,
+	userID: true
 }).partial();
 
 export type GoalUpdateData = z.infer<typeof GoalUpdateDataSchema>;

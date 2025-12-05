@@ -1,4 +1,5 @@
 import { PrismaClient } from "../generated/prisma/client.ts";
+import type { GoalUpdateInput } from "../generated/prisma/models.ts";
 import type { GoalCreateData, GoalUpdateData } from "../schemas/goals.schemas.ts";
 
 export class GoalService {
@@ -45,24 +46,11 @@ export class GoalService {
 
 	async updateGoalByID(id: number, data: GoalUpdateData) {
 
-		// TODO: Fix update to undefined 
-		const goalData: any = {
-			title: data.title,
-			description: data.description,
-			timeTotal: data.timeTotal,
-			timeLeft: data.timeTotal,
-			user: {
-				connect: {
-					id: data.userID
-				}
-			}		 	
-		};
 
 		const goal = await this.prisma.goal.update({
-			where: {
-				id: id
-			}, data: goalData
-		});	
+			where: { id: id },
+			data: data as GoalUpdateInput
+		});
 
 		return goal;
 

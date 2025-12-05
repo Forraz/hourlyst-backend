@@ -44,6 +44,9 @@ export class UserService {
 	};
 
 	async createUser(data: UserCreateInput) {
+		
+		const existingUser = await this.getUserByUsername(data.username);
+		if (existingUser) { throw new ReferenceError("Username must be unique") }
 
 		const user = await this.prisma.user.create({ data: data });
 

@@ -1,6 +1,14 @@
 
 import * as z from "zod";
-import { UserDataSchema } from "./users.schemas.ts";
+import strictParseInt from "../utils/strictParseToInt.ts";
+
+const UserDataSchema = z.object({
+
+	id: z.string().transform(val => strictParseInt(val)),
+	username: z.string().min(5),
+	password: z.string().min(8)
+
+});
 
 const LoginDataSchema = UserDataSchema.pick({
 

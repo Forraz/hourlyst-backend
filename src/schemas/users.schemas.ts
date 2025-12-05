@@ -1,11 +1,11 @@
 import * as z from "zod";
 import strictParseInt from "../utils/strictParseToInt.ts";
 
-export const UserDataSchema = z.object({
+const UserDataSchema = z.object({
 
 	id: z.string().transform(val => strictParseInt(val)),
-	username: z.string().min(5),
-	password: z.string().min(8)
+	username: z.string(),
+	password_hash: z.string()
 
 });
 
@@ -32,7 +32,7 @@ export const UserPostRequestSchema = z.object({
 
 	body: UserDataSchema.pick({
 		username: true,
-		password: true
+		password_hash: true
 	}),
 
 });

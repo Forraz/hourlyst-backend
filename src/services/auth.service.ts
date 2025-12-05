@@ -55,6 +55,14 @@ export class AuthService {
 
 	async signUp(data: SignupData) {
 
+		const existingUser = await this.prisma.user.findUnique({
+			where: {
+				username: data.username
+			}
+		});
+
+		if (existingUser) { throw new ReferenceError("Username must be unique") }
+
 		const hmac = createHmac(ALGORITHM, SECRET_KEY);
 		hmac.update(data.password);
 

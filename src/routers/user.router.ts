@@ -25,21 +25,21 @@ userRouter.get(
 userRouter.post(
 	"/",
 	validateRequest(UserPostRequestSchema),
-	userController.handlePostUser,
+	userController.handlePostUser.bind(userController),
 	handleErrors
 );
 
 userRouter.put(
 	"/:id",
 	validateRequest(UserPutRequestSchema),
-	userController.handlePutUser,
+	userController.handlePutUser.bind(userController),
 	handleErrors
 );
 
 userRouter.delete(
 	"/:id",
 	validateRequest(UserDeleteRequestSchema),
-	userController.handleDeleteUser,
+	userController.handleDeleteUser.bind(userController),
 	handleErrors
 );
 
